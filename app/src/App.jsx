@@ -10,22 +10,8 @@ var App = React.createClass({
   getInitialState: function() {
     return({
       user: undefined,
-      response: false
+      response: true
     })
-  },
-  componentDidMount: function() {
-    if(!this.state.user){
-      ajax('GET', apiUrl, function(data){
-        if (data != 'no user'){
-          this.setState({
-            user: JSON.parse(data)
-          })
-        }
-        this.setState({
-          response: true
-        })
-      }.bind(this))	      
-    }
   },
   render: function() {
       if(this.state.response){

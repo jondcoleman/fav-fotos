@@ -2,11 +2,11 @@
 
 var path = process.cwd();
 
-var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
+var ImageHandler = require(path + '/app/controllers/imageHandler.js');
 
 module.exports = function (app, passport) {
     
-    var clickHandler = new ClickHandler();
+    var imageHandler = new ImageHandler();
 
     app.route('/')
         .get(function (req, res) {
@@ -34,8 +34,8 @@ module.exports = function (app, passport) {
         failureRedirect: '/login'
         }));
     
-    app.route('/api/:id/clicks')
-        .get(clickHandler.getClicks)
-        .post(clickHandler.addClick)
-        .delete(clickHandler.resetClicks);
+    app.route('/api/images/:id')
+        .get(imageHandler.getImages)
+        .post(imageHandler.addImage)
+        .delete(imageHandler.deleteImage);
 };
