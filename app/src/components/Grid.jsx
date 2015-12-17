@@ -1,5 +1,6 @@
 var React = require('react');
 var GridItem = require('./GridItem');
+var Masonry = require('react-masonry-component')(React); 
 
 var images = [
   {
@@ -44,9 +45,11 @@ module.exports = React.createClass({
       <div className="container">
         <div className="row">
           <div className="col s12 offset-s1">
-            <div className="grid js-masonry" data-masonry-options='{ "itemSelector": ".grid-item" }'>
+            <Masonry
+              className={'grid'}
+              >
               {GridItemList}
-            </div>
+            </Masonry>
           </div>
         </div>
       </div>
