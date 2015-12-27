@@ -4,7 +4,8 @@ var express = require('express'),
     routes = require('./app/routes/index.js'),
     mongoose = require('mongoose'),
     passport = require('passport'),
-    session = require('express-session');
+    session = require('express-session'),
+    bodyParser = require('body-parser');
     
 
 var app = express();
@@ -27,6 +28,8 @@ app.use(passport.session());
 
 app.set('view engine', 'jade');
 app.set('views', './app/views');
+
+app.use(bodyParser.json());
 
 routes(app, passport);
 

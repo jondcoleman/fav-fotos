@@ -19,7 +19,7 @@ module.exports = function (app, passport) {
             res.redirect('/');
         });
     
-    app.route('/api/:id')
+    app.route('/api/user/:id')
         .get(function (req, res) {
             if (req.user) {
                 res.json(req.user.github);
@@ -34,8 +34,10 @@ module.exports = function (app, passport) {
         failureRedirect: '/login'
         }));
     
-    app.route('/api/images/:id')
+    app.route('/api/images')
         .get(imageHandler.getImages)
         .post(imageHandler.addImage)
+        
+    app.route('/api/images/:id')
         .delete(imageHandler.deleteImage);
 };
