@@ -1,6 +1,7 @@
 var React = require('react');
 var GridItem = require('./GridItem');
 var Masonry = require('react-masonry-component')(React); 
+var ModalAdd = require('./ModalAdd');
 var ajax = require('../ajax-functions');
 
 // var images = [
@@ -66,6 +67,7 @@ module.exports = React.createClass({
             </Masonry>
           </div>
         </div>
+        <ModalAdd/>
       </div>
 		);
 	}
