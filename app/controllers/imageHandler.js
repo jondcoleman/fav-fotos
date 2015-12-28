@@ -17,7 +17,6 @@ function ImageHandler () {
 
     this.addImage = function (req, res) {
         var newImage = new Image();
-        console.log(req.body);
         newImage.imageUrl = req.body.imageUrl;
         //newImage.userId = req.user._id;
         newImage.description = req.body.description;
@@ -36,8 +35,6 @@ function ImageHandler () {
             .findByIdAndRemove(req.params.id)
             .exec(function (err, result) {
                     if (err) { throw err; }
-                    console.log(req.params.id);
-                    console.log(result);
                     res.send('deleted');
                 }
             );

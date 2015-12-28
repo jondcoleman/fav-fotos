@@ -49,11 +49,16 @@ module.exports = React.createClass({
     },
     componentDidMount: function() {
         ajax('GET', '/api/images', function(result){
-            console.log(JSON.parse(result))
             this.setState({
                 images: JSON.parse(result)
             })
         }.bind(this))
+    },
+    updateComponent: function(newImage) {
+        var img = JSON.parse(newImage)
+        this.setState({
+            images: this.state.images.concat(img)
+        })
     },
     render: function() {
 		return (
@@ -67,7 +72,7 @@ module.exports = React.createClass({
             </Masonry>
           </div>
         </div>
-        <ModalAdd/>
+        <ModalAdd handleUpdate={this.updateComponent.bind(this)}/>
       </div>
 		);
 	}

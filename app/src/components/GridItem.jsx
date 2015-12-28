@@ -12,7 +12,7 @@ module.exports = React.createClass({
                 <p>{this.props.image.description}</p>
               </div>
               <div className="card-action">
-                <div className="btn-floating btn-large"><i className="material-icons">open_in_new</i></div>
+                <a href={this.props.image.imageUrl} target="blank"><div className="btn-floating btn-large"><i className="material-icons">open_in_new</i></div></a>
                 <div className="btn-floating btn-large red card-btn-delete"><i className="material-icons">delete</i></div>
               </div>
             </div>

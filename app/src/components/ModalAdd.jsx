@@ -18,16 +18,21 @@ module.exports = React.createClass({
     handleDescriptionChange: function(e){
         this.setState({image_description: e.target.value})
     },
-    handleSubmit: function(e){
-        
+    handleSubmit: function(e){        
         e.preventDefault();
-        console.log('test');
         var iUrl = this.state.image_url.trim();
         var iTitle = this.state.image_title.trim();
         var iDescrption = this.state.image_description.trim();
         if (!iUrl || !iTitle || !iDescrption) {
             return;
         }
+        
+        this.setState({
+            image_url: '',
+            image_title: '',
+            image_description: ''
+        })
+        
         var ajax = new Ajax({
             url: '/api/images',
             method: 'POST',
@@ -39,10 +44,9 @@ module.exports = React.createClass({
             }
         })
             .on('success', function(e){
-                console.log('success', e);
-            })
+                this.props.handleUpdate(e.target.response);
+            }.bind(this))
             .on('error', function(e){
-                console.log('error', e);
             })
         ajax.send();
     },
@@ -72,7 +76,7 @@ module.exports = React.createClass({
                                     <label for="image_description">Description</label>
                                 </div>
                             </div>
-                            <input type="submit" value="Submit" className="waves-effect waves-green btn-flat"></input>
+                            <input type="submit" value="Submit" className="modal-action modal-close waves-effect waves-green btn-flat"></input>
                         </form>
                     </div>
                 </div>
