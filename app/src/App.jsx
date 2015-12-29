@@ -2,7 +2,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Routes = require('./Routes');
 
-var ajax = require('./ajax-functions');
 var appUrl = window.location.origin;
 var apiUrl = appUrl + '/api/:id';
 
@@ -16,8 +15,8 @@ var App = React.createClass({
   render: function() {
       if(this.state.response){
         return (
-          <Routes user={this.state.user}/>
-        )        
+          <Routes/>
+        )
       } else {
         return (
           <div>Loading...</div>

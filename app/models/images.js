@@ -7,7 +7,7 @@ var Image = new Schema({
 	imageUrl: String,
 	title: String,
 	description: String,
-	//userId: mongoose.Schema.Types.ObjectId
+	userId: mongoose.Schema.Types.ObjectId
 });
 
 module.exports = mongoose.model('Image', Image);

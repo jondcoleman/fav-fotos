@@ -5,5 +5,5 @@ module.exports = React.createClass({
 		return (
 			<button onClick={this.props.onClick} className={"btn " + this.props.className}>{this.props.text}</button>
 		)
-	} 
+	}
 });

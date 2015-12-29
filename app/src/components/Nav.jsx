@@ -13,18 +13,26 @@ module.exports = React.createClass({
 					<a href="#!" className="brand-logo">Fav Fotos</a>
 					<a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
 					<ul className="right hide-on-med-and-down">
-					<li><a href="badges.html">My Favs</a></li>
-					<li><a href="collapsible.html">All Favs</a></li>
-					<li><a href="mobile.html">Login</a></li>
+					{this.props.user ? <li><a href="badges.html">My Favs</a></li> : null}
+					{this.props.user ? <li><a href="collapsible.html">All Favs</a></li> : null}
+					{this.props.user ?
+						<li><a href="/logout">Logout</a></li>
+						:
+						<li><a href="/auth/twitter/callback">Login</a></li>
+					}
 					</ul>
 					<ul className="side-nav" id="mobile-demo">
-					<li><a href="badges.html">My Favs</a></li>
-					<li><a href="collapsible.html">All Favs</a></li>
-					<li><a href="mobile.html">Login</a></li>
+					{this.props.user ? <li><a href="badges.html">My Favs</a></li> : null}
+					{this.props.user ? <li><a href="collapsible.html">All Favs</a></li> : null}
+					{this.props.user ?
+						<li><a href="/logout">Logout</a></li>
+						:
+						<li><a href="/auth/twitter/callback">Login</a></li>
+					}
 					</ul>
 				</div>
 				</nav>
-			</div>		
+			</div>
 		)
 	}
 });
