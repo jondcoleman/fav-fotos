@@ -4,24 +4,32 @@ var Route = require('react-router').Route;
 var IndexRoute = require('react-router').IndexRoute;
 var Link = require('react-router').Link;
 
-var Login = require('./components/Login');
 var Grid = require('./components/Grid');
 var Main = require('./components/Main');
+
 
 module.exports = React.createClass({
 	// requireLogin: function (nextState, replaceState) {
 	// 	if (!this.props.user) {
 	// 		replaceState({ nextPathname: nextState.location.pathname }, '/Login')
 	// 	}
-	// }, 
+	// },
 	render: function() {
+		var UserGrid = React.createClass({
+			render: function() {
+				return (
+					<Grid type="user"/>
+				)
+		}
+	})
+
 		return (
 			<Router>
 				<Route path="/" component={Main}>
 					<IndexRoute component={Grid}/>
+					<Route path="/my_favs" component={UserGrid}/>
 				</Route>
-				<Route path="/Login" component={Login}/>
 			</Router>
-		)			
+		)
 	}
 })

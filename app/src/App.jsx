@@ -8,7 +8,6 @@ var apiUrl = appUrl + '/api/:id';
 var App = React.createClass({
   getInitialState: function() {
     return({
-      user: undefined,
       response: true
     })
   },
