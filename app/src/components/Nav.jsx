@@ -10,11 +10,11 @@ module.exports = React.createClass({
 			<div className="header">
 				<nav>
 				<div className="nav-wrapper teal">
-					<a href="#!" className="brand-logo">Fav Fotos</a>
+					<Link to="/" className="brand-logo">Fav Fotos</Link>
 					<a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
 					<ul className="right hide-on-med-and-down">
-					{this.props.user ? <li><Link to="/my_favs">My Favs</Link></li> : null}
 					{this.props.user ? <li><Link to="/">All Favs</Link></li> : null}
+					{this.props.user ? <li><Link to="/my_favs">My Favs</Link></li> : null}
 					{this.props.user ?
 						<li><a href="/logout">Logout</a></li>
 						:
@@ -22,8 +22,8 @@ module.exports = React.createClass({
 					}
 					</ul>
 					<ul className="side-nav" id="mobile-demo">
-					{this.props.user ? <li><Link to="/my_favs">My Favs</Link></li> : null}
 					{this.props.user ? <li><Link to="/">All Favs</Link></li> : null}
+					{this.props.user ? <li><Link to="/my_favs">My Favs</Link></li> : null}
 					{this.props.user ?
 						<li><a href="/logout">Logout</a></li>
 						:

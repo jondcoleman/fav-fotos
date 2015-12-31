@@ -32,7 +32,6 @@ module.exports = React.createClass({
 		var childrenWithProps = React.Children.map(this.props.children, function(child){
 			return React.cloneElement(child, {user: this.state.user})
 		}.bind(this))
-
 		return (
 			<div>
 				<Nav user={this.state.user}/>

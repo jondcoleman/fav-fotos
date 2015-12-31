@@ -58,13 +58,13 @@ module.exports = React.createClass({
                             <div className="row modal-form-row">
                                 <div className="input-field col s12">
                                     <input id="image_url" type="text" className="validate" required value={this.state.image_url} onChange={this.handleUrlChange}></input>
-                                    <label for="image_url">Image URL</label>
+                                    <label htmlFor="image_url">Image URL</label>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="input-field col s12">
                                     <input id="image_title" type="text" className="validate" required value={this.state.image_title} onChange={this.handleTitleChange}></input>
-                                    <label for="image_title">Title</label>
+                                    <label htmlFor="image_title">Title</label>
                                 </div>
                             </div>
                             <input type="submit" value="Submit" className="waves-effect waves-green btn-flat"></input>
