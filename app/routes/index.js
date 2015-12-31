@@ -9,6 +9,7 @@ module.exports = function (app, passport) {
         if (req.isAuthenticated()) {
             return next();
         } else {
+            console.log('test')
             res.send('not authorized')
         }
     }
@@ -38,7 +39,7 @@ module.exports = function (app, passport) {
     app.route('/auth/twitter/callback')
         .get(passport.authenticate('twitter', {
           successRedirect: '/',
-          failureRedirect: '/login'
+          failureRedirect: '/'
         }));
 
     app.route('/api/images')
