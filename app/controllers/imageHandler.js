@@ -8,6 +8,7 @@ function ImageHandler () {
     this.getImages = function (req, res) {
         Image
             .find({})
+            .sort({_id: 'desc'})
             .exec(function (err, result) {
                 if (err) { throw err; }
 
@@ -18,6 +19,7 @@ function ImageHandler () {
     this.getUserImages = function (req, res) {
       Image
         .find({userId: req.user._id})
+        .sort({_id: 'desc'})
         .exec(function(err, result) {
           if (err) {throw err;}
 
