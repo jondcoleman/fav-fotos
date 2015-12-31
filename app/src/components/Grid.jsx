@@ -2,20 +2,27 @@ var React = require('react');
 var GridItem = require('./GridItem');
 var Masonry = require('react-masonry-component')(React);
 var ModalAdd = require('./ModalAdd');
-var ajax = require('../ajax-functions');
+var Ajax = require('simple-ajax');
 
 module.exports = React.createClass({
-	getInitialState: function(){
+		getInitialState: function(){
         return {
             images: undefined
         }
     },
     componentDidMount: function() {
-        ajax('GET', '/api/images', function(result){
-            this.setState({
-                images: JSON.parse(result)
+			  var apiUrl;
+				this.props.type === 'user' ? apiUrl = '/api/images/user' : apiUrl = '/api/images';
+				var ajax = new Ajax({
+					url: apiUrl,
+					method: 'GET'
+				})
+					.on('success', function(e){
+						this.setState({
+                images: JSON.parse(e.currentTarget.response)
             })
-        }.bind(this))
+					}.bind(this))
+				ajax.send();
     },
     updateComponent: function(newImage) {
         var img = JSON.parse(newImage)
@@ -29,9 +36,9 @@ module.exports = React.createClass({
 					<div className="row">
 						<div className="col s12 offset-s1">
 							<Masonry className={'grid'}>
-								{this.state.images ? this.state.images.map(function(item){
-									return <GridItem key={item._id} image={item}/>
-								}) :
+								{this.state.images ? this.state.images.map(function(item, i){
+									return <GridItem key={item._id} image={item} type={this.props.type} handleDelete={this.handleDelete.bind(this, item._id, i)}/>
+								}.bind(this)) :
 								<div>Loading</div>
 							}
 						</Masonry>
@@ -40,5 +47,17 @@ module.exports = React.createClass({
 				<ModalAdd handleUpdate={this.updateComponent.bind(this)}/>
 			</div>
 		);
+	},
+	handleDelete: function(key, i) {
+		var ajax = new Ajax({
+			url: '/api/images/delete/' + key,
+			method: 'DELETE'
+		})
+			.on('success', function(e){
+				this.setState({
+					images: this.state.images.filter(function(item, index){return index !== i})
+				})
+			}.bind(this))
+		ajax.send()
 	}
 })

@@ -5,7 +5,13 @@ var path = process.cwd();
 var ImageHandler = require(path + '/app/controllers/imageHandler.js');
 
 module.exports = function (app, passport) {
-
+    function isLoggedIn (req, res, next) {
+        if (req.isAuthenticated()) {
+            return next();
+        } else {
+            res.send('not authorized')
+        }
+    }
     var imageHandler = new ImageHandler();
 
     app.route('/')
@@ -37,8 +43,11 @@ module.exports = function (app, passport) {
 
     app.route('/api/images')
         .get(imageHandler.getImages)
-        .post(imageHandler.addImage)
+        .post(isLoggedIn, imageHandler.addImage)
 
-    app.route('/api/images/:id')
-        .delete(imageHandler.deleteImage);
+    app.route('/api/images/user')
+        .get(isLoggedIn, imageHandler.getUserImages)
+
+    app.route('/api/images/delete/:id')
+        .delete(isLoggedIn, imageHandler.deleteImage);
 };

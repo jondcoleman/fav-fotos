@@ -15,6 +15,16 @@ function ImageHandler () {
             });
     };
 
+    this.getUserImages = function (req, res) {
+      Image
+        .find({userId: req.user._id})
+        .exec(function(err, result) {
+          if (err) {throw err;}
+
+          res.json(result);
+        })
+    }
+
     this.addImage = function (req, res) {
         var newImage = new Image();
         newImage.imageUrl = req.body.imageUrl;
@@ -31,6 +41,7 @@ function ImageHandler () {
     };
 
     this.deleteImage = function (req, res) {
+        console.log(req.params.id)
         Image
             .findByIdAndRemove(req.params.id)
             .exec(function (err, result) {

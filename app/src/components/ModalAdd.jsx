@@ -18,21 +18,19 @@ module.exports = React.createClass({
     handleDescriptionChange: function(e){
         this.setState({image_description: e.target.value})
     },
-    handleSubmit: function(e){        
+    handleSubmit: function(e){
         e.preventDefault();
         var iUrl = this.state.image_url.trim();
         var iTitle = this.state.image_title.trim();
-        var iDescrption = this.state.image_description.trim();
-        if (!iUrl || !iTitle || !iDescrption) {
+        if (!iUrl || !iTitle) {
             return;
         }
-        
+        $('#modal1').closeModal();
         this.setState({
             image_url: '',
             image_title: '',
-            image_description: ''
         })
-        
+
         var ajax = new Ajax({
             url: '/api/images',
             method: 'POST',
@@ -40,7 +38,6 @@ module.exports = React.createClass({
             data: {
                 imageUrl: iUrl,
                 title: iTitle,
-                description: iDescrption
             }
         })
             .on('success', function(e){
@@ -60,30 +57,24 @@ module.exports = React.createClass({
                         <form className="col s12" onSubmit={this.handleSubmit}>
                             <div className="row modal-form-row">
                                 <div className="input-field col s12">
-                                    <input id="image_url" type="text" className="validate" value={this.state.image_url} onChange={this.handleUrlChange}></input>
+                                    <input id="image_url" type="text" className="validate" required value={this.state.image_url} onChange={this.handleUrlChange}></input>
                                     <label for="image_url">Image URL</label>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="input-field col s12">
-                                    <input id="image_title" type="text" className="validate" value={this.state.image_title} onChange={this.handleTitleChange}></input>
+                                    <input id="image_title" type="text" className="validate" required value={this.state.image_title} onChange={this.handleTitleChange}></input>
                                     <label for="image_title">Title</label>
                                 </div>
                             </div>
-                            <div className="row">
-                                <div className="input-field col s12">
-                                    <textarea id="image_description" type="text" className="materialize-textarea validate" value={this.state.image_description} onChange={this.handleDescriptionChange}></textarea>
-                                    <label for="image_description">Description</label>
-                                </div>
-                            </div>
-                            <input type="submit" value="Submit" className="modal-action modal-close waves-effect waves-green btn-flat"></input>
+                            <input type="submit" value="Submit" className="waves-effect waves-green btn-flat"></input>
                         </form>
                     </div>
                 </div>
                 <div className="modal-footer">
-                    
+
                 </div>
             </div>
 		)
-	} 
+	}
 });
