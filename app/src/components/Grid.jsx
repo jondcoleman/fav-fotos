@@ -11,6 +11,7 @@ module.exports = React.createClass({
         }
     },
     componentDidMount: function() {
+				//TODO: abstract this so that I can get users too depending on Grid type
 			  var apiUrl;
 				this.props.type === 'user' ? apiUrl = '/api/images/user' : apiUrl = '/api/images';
 				var ajax = new Ajax({

@@ -17,7 +17,7 @@ module.exports = function (app, passport) {
     }
     var imageHandler = new ImageHandler();
     var userHandler = new UserHandler();
-    userHandler.getTwitterUser('jondcoleman')
+    //userHandler.getTwitterUser('jondcoleman')
 
     app.route('/')
         .get(function (req, res) {
@@ -39,6 +39,9 @@ module.exports = function (app, passport) {
                 res.send();
             }
         });
+
+    app.route('/api/users')
+        .get(userHandler.getUsers)
 
     app.route('/auth/twitter/callback')
         .get(passport.authenticate('twitter', {

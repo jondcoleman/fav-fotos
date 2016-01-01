@@ -15,15 +15,40 @@ function UserHandler() {
     access_token_secret: configAuth.twitterAuth.accessTokenSecret,
   });
 
-  this.getTwitterUser = function(displayName) {
-    client.get('users/show', {screen_name: displayName}, function(err, user) {
+  var getTwitterUser = function(username, callback) {
+    client.get('users/show', {
+      screen_name: username
+    }, function(err, user) {
       if (err) {
         console.log(err)
+        callback(undefined);
       } else {
-        console.log(user.profile_image_url.replace(/_normal.jpg/g, '.jpg'));
+        callback(user.profile_image_url.replace(/_normal.jpg/g, '.jpg'));
       }
     })
   }
+
+  this.getUsers = function(req, res) {
+    Users
+      .find({})
+      .sort({
+        _id: 'desc'
+      })
+      .lean() //this returns a mutable javascript object
+      .exec(function(err, users) {
+        if (err) {
+          throw err;
+        }
+        var counter = 0;
+        users.forEach(function(user, index){
+          getTwitterUser(user.twitter.username, function(result){
+            user.twitter.img = result;
+            counter++
+            users.length === counter ? res.json(users) : null;
+          });
+        })
+      });
+  };
 
 };
 
