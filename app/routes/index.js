@@ -3,6 +3,8 @@
 var path = process.cwd();
 
 var ImageHandler = require(path + '/app/controllers/imageHandler.js');
+var UserHandler = require(path + '/app/controllers/userHandler.js');
+
 
 module.exports = function (app, passport) {
     function isLoggedIn (req, res, next) {
@@ -14,6 +16,8 @@ module.exports = function (app, passport) {
         }
     }
     var imageHandler = new ImageHandler();
+    var userHandler = new UserHandler();
+    userHandler.getTwitterUser('jondcoleman')
 
     app.route('/')
         .get(function (req, res) {
