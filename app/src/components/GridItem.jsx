@@ -10,7 +10,7 @@ module.exports = React.createClass({
           <div className="grid-item">
             <div className="card medium">
               <div className="card-image">
-                <img src={this.props.image}></img>
+                <img src={this.props.image} onError={this.imgError.bind(event)}></img>
               </div>
               <div className="card-content">
                 <p>{this.props.title}</p>
@@ -26,5 +26,11 @@ module.exports = React.createClass({
             </div>
           </div>
 		);
+	},
+	imgError: function(test){
+		// image.onerror = "";
+		// image.src = "public/img/No_image.gif";
+		// return true;
+		test.target.src = "/public/img/No_image.gif"
 	}
 })
