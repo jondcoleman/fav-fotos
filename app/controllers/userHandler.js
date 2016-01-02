@@ -23,7 +23,10 @@ function UserHandler() {
         console.log(err)
         callback(undefined);
       } else {
-        callback(user.profile_image_url.replace(/_normal.jpg/g, '.jpg').replace(/_normal.png/g, '.png'));
+        callback(user.profile_image_url
+          .replace(/_normal.jpg/g, '.jpg')
+          .replace(/_normal.jpeg/g, '.jpeg')
+          .replace(/_normal.png/g, '.png'));
       }
     })
   }
