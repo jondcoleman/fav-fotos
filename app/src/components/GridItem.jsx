@@ -4,13 +4,15 @@ var Route = require('react-router').Route;
 var IndexRoute = require('react-router').IndexRoute;
 var Link = require('react-router').Link;
 
+var ImageHiddenOnError = require('./ImageHiddenOnError')
+
 module.exports = React.createClass({
 	render: function() {
 		return (
           <div className="grid-item">
             <div className="card medium">
               <div className="card-image">
-                <img src={this.props.image} onError={this.imgError.bind(event)}></img>
+                <ImageHiddenOnError image={this.props.image}/>
               </div>
               <div className="card-content">
                 <p>{this.props.title}</p>
@@ -26,11 +28,5 @@ module.exports = React.createClass({
             </div>
           </div>
 		);
-	},
-	imgError: function(test){
-		// image.onerror = "";
-		// image.src = "public/img/No_image.gif";
-		// return true;
-		//test.target.src = "/public/img/No_image.gif"
 	}
 })
