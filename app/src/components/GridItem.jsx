@@ -31,6 +31,6 @@ module.exports = React.createClass({
 		// image.onerror = "";
 		// image.src = "public/img/No_image.gif";
 		// return true;
-		test.target.src = "/public/img/No_image.gif"
+		//test.target.src = "/public/img/No_image.gif"
 	}
 })
