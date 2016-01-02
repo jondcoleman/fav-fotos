@@ -13,21 +13,23 @@ module.exports = React.createClass({
 					<Link to="/" className="brand-logo">Fav Fotos</Link>
 					<a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
 					<ul className="right hide-on-med-and-down">
-					{this.props.user ? <li><Link to="/">All Favs</Link></li> : null}
-					{this.props.user ? <li><Link to="/my_favs">My Favs</Link></li> : null}
+					<li><Link to="/">All Favs</Link></li>
+					<li><Link to="/users">Users</Link></li>
+					{this.props.user ? <li><Link to={"/user/" + this.props.user._id}>My Favs</Link></li> : null}
 					{this.props.user ?
 						<li><a href="/logout">Logout</a></li>
 						:
-						<li><a href="/auth/twitter/callback">Login</a></li>
+						<li><a href="/auth/twitter/callback">Login/Register</a></li>
 					}
 					</ul>
 					<ul className="side-nav" id="mobile-demo">
-					{this.props.user ? <li><Link to="/">All Favs</Link></li> : null}
-					{this.props.user ? <li><Link to="/my_favs">My Favs</Link></li> : null}
+					<li><Link to="/">All Favs</Link></li>
+					<li><Link to="/users">Users</Link></li>
+					{this.props.user ? <li><Link to={"/user/" + this.props.user._id}>My Favs</Link></li> : null}
 					{this.props.user ?
 						<li><a href="/logout">Logout</a></li>
 						:
-						<li><a href="/auth/twitter/callback">Login</a></li>
+						<li><a href="/auth/twitter/callback">Login/Register</a></li>
 					}
 					</ul>
 				</div>

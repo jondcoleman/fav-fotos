@@ -9,8 +9,15 @@ function ImageHandler () {
         Image
             .find({})
             .sort({_id: 'desc'})
+            .lean()
             .exec(function (err, result) {
                 if (err) { throw err; }
+
+                  result.forEach(function(item){
+                    if (req.user && item.userId){
+                      item.userId.toString() === req.user._id.toString() ? item.allowDelete = true : null
+                    }
+                  })
 
                 res.json(result);
             });
@@ -18,11 +25,16 @@ function ImageHandler () {
 
     this.getUserImages = function (req, res) {
       Image
-        .find({userId: req.user._id})
+        .find({userId: req.params.id})
         .sort({_id: 'desc'})
+        .lean()
         .exec(function(err, result) {
           if (err) {throw err;}
-
+            result.forEach(function(item){
+              if (req.user && item.userId){
+                item.userId.toString() === req.user._id.toString() ? item.allowDelete = true : null
+              }
+            })
           res.json(result);
         })
     }
@@ -37,7 +49,6 @@ function ImageHandler () {
             if (err) {
                 throw err;
             }
-
             res.json(newImage);
         });
     };

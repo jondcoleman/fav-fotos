@@ -18,7 +18,7 @@ module.exports = React.createClass({
 		var UserGrid = React.createClass({
 			render: function() {
 				return (
-					<Grid type="user"/>
+					<Grid type="user" userId={this.props.routeParams.userId} user={this.props.user}/>
 				)
 			}
 		})
@@ -26,7 +26,7 @@ module.exports = React.createClass({
 		var UsersGrid = React.createClass({
 			render: function() {
 				return (
-					<Grid type="users"/>
+					<Grid type="users" user={this.props.user}/>
 				)
 			}
 		})
@@ -37,6 +37,7 @@ module.exports = React.createClass({
 					<IndexRoute component={Grid}/>
 					<Route path="/my_favs" component={UserGrid}/>
 					<Route path="/users" component={UsersGrid}/>
+					<Route path="/user/:userId" component={UserGrid}/>
 				</Route>
 			</Router>
 		)

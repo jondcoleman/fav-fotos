@@ -53,8 +53,8 @@ module.exports = function (app, passport) {
         .get(imageHandler.getImages)
         .post(isLoggedIn, imageHandler.addImage)
 
-    app.route('/api/images/user')
-        .get(isLoggedIn, imageHandler.getUserImages)
+    app.route('/api/images/user/:id')
+        .get(imageHandler.getUserImages)
 
     app.route('/api/images/delete/:id')
         .delete(isLoggedIn, imageHandler.deleteImage);

@@ -1,6 +1,5 @@
 var React = require('react');
 var Nav = require('./Nav');
-var AddButton = require('./AddButton');
 var Ajax = require('simple-ajax');
 
 module.exports = React.createClass({
@@ -36,7 +35,6 @@ module.exports = React.createClass({
 			<div>
 				<Nav user={this.state.user}/>
 				{childrenWithProps}
-				{this.state.user ? <AddButton /> : null}
 			</div>
 		)
 	}

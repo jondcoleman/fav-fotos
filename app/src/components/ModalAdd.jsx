@@ -28,7 +28,7 @@ module.exports = React.createClass({
         $('#modal1').closeModal();
         this.setState({
             image_url: '',
-            image_title: '',
+            image_title: ''
         })
 
         var ajax = new Ajax({
@@ -37,7 +37,7 @@ module.exports = React.createClass({
             dataType: 'json',
             data: {
                 imageUrl: iUrl,
-                title: iTitle,
+                title: iTitle
             }
         })
             .on('success', function(e){
