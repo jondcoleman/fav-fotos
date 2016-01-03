@@ -19,7 +19,7 @@ module.exports = React.createClass({
               </div>
               <div className="card-action">
 								{this.props.type !== 'users' ?
-									<a href={this.props.image.imageUrl} target="blank"><div className="btn-floating btn-large"><i className="material-icons">open_in_new</i></div></a>
+									<a href={this.props.image} target="blank"><div className="btn-floating btn-large"><i className="material-icons">open_in_new</i></div></a>
 									:
 									<Link to={this.props.link}><div className="btn-floating btn-large"><i className="material-icons">open_in_new</i></div></Link>
 							 	}
